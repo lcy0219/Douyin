@@ -1,18 +1,28 @@
-name: pr-review
+name: Pull Request Review
+
 on:
   pull_request:
-    branches:
-      - main
-    types: [opened, synchronize]
+    types: [opened, synchronize, reopened]
+
 jobs:
-  review:
-    name: ChatGPT code review
+  review_comments:
     runs-on: ubuntu-latest
     steps:
-      - uses: agogear/chatgpt-pr-review@0.0.11
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          openai_api_key: ${{ secrets.OPENAI_API_KEY }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          github_pr_id: ${{ github.event.number }}
-          files: 'src/**/*.java'
-          openai_model: "gpt-3.5-turbo-16k"
+          python-version: '3.8'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install openai
+
+      - name: Review Comments
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python .github/scripts/review_comments.py
+
