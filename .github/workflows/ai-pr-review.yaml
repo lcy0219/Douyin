@@ -1,41 +1,16 @@
-name: Pull Request Review
-
+name: pr-review
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
-
+    types: [opened, synchronize]
 jobs:
-  review_comments:
+  review:
+    name: ChatGPT code review
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - uses: agogear/chatgpt-pr-review@0.0.11
         with:
-          python-version: '3.8'
-      
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install openai
-      
-      - name: Review Comments
-        id: review
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: echo "::set-output name=result::$(python .github/scripts/review_comments.py)"
-      
-      - name: Post comment on PR
-        uses: actions/github-script@v6
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            const output = "${{ steps.review.outputs.result }}"
-            github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.payload.pull_request.number,
-              body: `Review results: ${output}`
-            })
+          openai_api_key: ${{ secrets.OPENAI_API_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_pr_id: ${{ github.event.number }}
+          files: "*.java"
+          openai_model: "gpt-4-turbo"
