@@ -1,6 +1,8 @@
 name: pr-review
 on:
   pull_request:
+    branches:
+      - develop
     types: [opened, synchronize]
 jobs:
   review:
