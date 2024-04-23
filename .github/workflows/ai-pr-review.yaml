@@ -11,8 +11,8 @@ jobs:
     steps:
       - uses: anc95/ChatGPT-CodeReview@main
         with:
-          openai_api_key: ${{ secrets.OPENAI_API_KEY }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           github_pr_id: ${{ github.event.number }}
           files: 'src/**/*.java'
           openai_model: "gpt-3.5-turbo-0125"
