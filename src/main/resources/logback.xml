@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<configuration>
+
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%5level [%thread] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <root>
+        <level value="info"/>
+        <appender-ref ref="stdout"/>
+    </root>
+    <logger name="com.dao">
+        <level value="debug"/>
+        <appender-ref ref="stdout" />
+    </logger>
+
+</configuration>
