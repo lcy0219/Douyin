@@ -18,7 +18,7 @@ import java.util.Arrays;
 public class RequestAop {
 //    this is for testing chatgpt reviewing test 3
 //    this is for testing chatgpt reviewing test 3
-    //    this is for testing chatgpt reviewing test 4
+    
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Pointcut("execution(* com.controller.*.*.*(..))")
@@ -37,5 +37,7 @@ public class RequestAop {
         logger.info("URL : " + request.getRequestURL().toString());
         logger.info("ARGS : " + Arrays.toString(joinPoint.getArgs()));
         logger.info("Name: " + joinPoint.getTarget().getClass().getName());
+
+        logger.info("Name: " + joinPoint.getTarget().getClass().getName()); //    this is for testing chatgpt reviewing test 4
     }
 }
