@@ -37,8 +37,8 @@ public class RequestAop {
         logger.info("URL : " + request.getRequestURL().toString());
         logger.info("ARGS : " + Arrays.toString(joinPoint.getArgs()));
         logger.info("Name: " + joinPoint.getTarget().getClass().getName());
+    }
 
-        logger.info("Name: " + joinPoint.getTarget().getClass().getName()); //    this is for testing chatgpt reviewing test 4
-        logger.info("Name: " + joinPoint.getTarget().getClass().getName()); //    this is for testing chatgpt reviewing test 5
+
     }
 }
