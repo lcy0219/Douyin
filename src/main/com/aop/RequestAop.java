@@ -21,6 +21,8 @@ public class RequestAop {
     
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    private Logger logger1 = LoggerFactory.getLogger(this.getClass());
+
     @Pointcut("execution(* com.controller.*.*.*(..))")
     public void pointCut(){}
 
