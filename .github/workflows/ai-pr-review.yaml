@@ -9,4 +9,4 @@ jobs:
     steps:
       - uses: agogear/chatgpt-pr-review@0.0.11
         with:
-          args: ${{ secrets.OPENAI_API_KEY }} ${{ secrets.GITHUB_TOKEN }} ${{ github.event.pull_request.id }} "*.py,*.java,*.ts" "gpt-3.5-turbo" 0.5 2048 warning
+          args: ${{ secrets.OPENAI_API_KEY }} ${{ secrets.GITHUB_TOKEN }} ${{ github.event.pull_request.id }} "*.py,*.java,*.ts" "gpt-3.5-turbo"
