@@ -39,21 +39,6 @@ public class RequestAop {
         logger.info("Name: " + joinPoint.getTarget().getClass().getName());
     }
 
-    @Before("pointCut()")
-    public void doBefore(JoinPoint joinPoint){
-        // 接收到请求，记录请求内容
-        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        HttpServletRequest request = attributes.getRequest();
-        // 记录下请求内容
-        //System.out.println("URL : " + request.getRequestURL().toString());
-        //System.out.println("HTTP_METHOD : " + request.getMethod());
-        //System.out.println("CLASS_METHOD : " + jp);
-        //System.out.println("ARGS : " + Arrays.toString(jp.getArgs()));
-        logger.info("URL : " + request.getRequestURL().toString());
-        logger.info("ARGS : " + Arrays.toString(joinPoint.getArgs()));
-        logger.info("Name: " + joinPoint.getTarget().getClass().getName());
-    }
-
 
     }
 }
