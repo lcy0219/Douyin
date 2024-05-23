@@ -7,9 +7,10 @@ jobs:
     name: ChatGPT code review
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: agogear/chatgpt-pr-review@0.0.11
+      - uses: agogear/chatgpt-pr-review@0.0.13
         with:
           openai_api_key: ${{ Secrets.OPENAI_API_KEY }}
           github_token: ${{ Secrets.GITHUB_TOKEN }}
           github_pr_id: ${{ github.event.number }}
+          file: "*.java"
+          openai_model: "gpt-4-turbo"
