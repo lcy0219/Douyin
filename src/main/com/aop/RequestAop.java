@@ -21,8 +21,6 @@ public class RequestAop {
     
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private Logger logger1 = LoggerFactory.getLogger(this.getClass());
-
     @Pointcut("execution(* com.controller.*.*.*(..))")
     public void pointCut(){}
 
@@ -34,6 +32,7 @@ public class RequestAop {
         // 记录下请求内容
         //System.out.println("URL : " + request.getRequestURL().toString());
         //System.out.println("HTTP_METHOD : " + request.getMethod());
+        //System.out.println("CLASS_METHOD : " + jp);
         //System.out.println("CLASS_METHOD : " + jp);
         //System.out.println("ARGS : " + Arrays.toString(jp.getArgs()));
         logger.info("URL : " + request.getRequestURL().toString());
